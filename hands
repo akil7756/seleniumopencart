@@ -1,0 +1,71 @@
+package hands_on;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class opencart {
+	public static void main(String[] args) throws InterruptedException {
+		
+		//System.getProperty("webdriver.chrome.driver","C:\\Akilan\\chrome webdriver");
+         //ChromeDriver driver = new ChromeDriver();
+         
+         System.getProperty("webdriver.edge.driver","C:\\Akilan\\edge driver");
+         EdgeDriver driver = new EdgeDriver();
+         
+         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+	     driver.get("https://katalon-demo-cura.herokuapp.com/");
+	     driver.manage().window().maximize();
+	     driver.findElement(By.id("btn-make-appointment")).click();	
+	     Thread.sleep(2000);
+	     driver.findElement(By.id("txt-username")).sendKeys("John Doe");
+	     driver.findElement(By.id("txt-password")).sendKeys("ThisIsNotAPasswor");
+	     driver.findElement(By.id("btn-login")).click();
+	     Thread.sleep(2000);
+	     System.out.println(driver.findElement(By.xpath("/html[1]/body[1]/section[1]/div[1]/div[1]/div[1]/p[2]")).getText());
+	     driver.navigate().back();
+	     Thread.sleep(2000);
+	     driver.navigate().forward();
+	     driver.findElement(By.id("txt-username")).sendKeys("John Doe");
+	     driver.findElement(By.id("txt-password")).sendKeys("ThisIsNotAPassword");
+	     driver.findElement(By.id("btn-login")).click();
+	     Thread.sleep(2000);
+	     WebElement staticdropdown = driver.findElement(By.id("combo_facility"));
+         Select dropdown = new Select(staticdropdown);
+         Thread.sleep(2000);
+         dropdown.selectByIndex(2);
+         driver.findElement(By.id("chk_hospotal_readmission")).click();
+         driver.findElement(By.xpath("//input[@value='Medicaid']")).click();
+         Thread.sleep(2000);
+         //parent to child
+         driver.findElement(By.xpath("//div/span")).click();
+         Thread.sleep(2000);
+         //relative x path
+         driver.findElement(By.xpath("//th[normalize-space()='April 2024']")).click();
+         Thread.sleep(2000);
+         //absolute x path
+         driver.findElement(By.xpath("/html[1]/body[1]/div[1]/div[2]/table[1]/tbody[1]/tr[1]/td[1]/span[10]")).click();
+         Thread.sleep(2000);
+         //relative css selector
+         driver.findElement(By.cssSelector("tbody tr:nth-child(1) td:nth-child(3)")).click();
+         driver.findElement(By.id("txt_comment")).sendKeys("selenium automation testing");
+         driver.findElement(By.id("menu-toggle")).click();
+         driver.findElement(By.id("menu-toggle")).click();
+         Thread.sleep(2000);
+         driver.findElement(By.id("btn-book-appointment")).click();
+         //parent to child 
+         System.out.println(driver.findElement(By.xpath("//div/h2")).getText());
+         driver.findElement(By.xpath("//a[@href='https://katalon-demo-cura.herokuapp.com/']")).click();
+	     
+	     
+	
+	
+	
+	
+	}
+	
+
+}
